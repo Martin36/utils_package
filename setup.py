@@ -23,7 +23,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.6",
-    install_reqs = [
+    install_requires = [
         "jsonlines>=2.0.0",
         "nltk>=3.6.2"
     ]
