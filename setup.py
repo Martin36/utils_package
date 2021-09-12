@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     
 setup(
     name="utils-package-Martin36",
-    version="0.0.3",
+    version="0.0.5",
     author="Martin Funkquist",
     author_email="martin.funkquist@gmail.com",
     description="A package containing helpful util functions",
