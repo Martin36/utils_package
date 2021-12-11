@@ -11,5 +11,8 @@ rm dist/*
 # Create new build
 python -m build
 
+# Deploy build to testpypi
+# twine upload --repository testpypi dist/*
+
 # Deploy build to pypi
-twine upload --repository testpypi dist/*
+twine upload dist/*
