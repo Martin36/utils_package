@@ -1,12 +1,10 @@
-import re, json, jsonlines, nltk
-from argparse import ArgumentError, ArgumentTypeError
+import os
+import re, json, jsonlines
 from collections import OrderedDict, defaultdict
 from typing import List, Union
 from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
 
-# TODO: Move this to setup file
-nltk.download("stopwords")
 porter_stemmer = PorterStemmer()
 s_words = set(stopwords.words("english"))
 
@@ -60,6 +58,19 @@ def calc_acc(pred_data: List[List[str]], gold_data: List[List[str]]):
     return accuracy, recall, precision
 
 
+def create_dirs_if_not_exist(path: str):
+    """Create the directory where the path points to.
+    Does nothing if the dir already exists
+
+    Args:
+        path (str): Either a path to a directory or a file
+    """
+
+    dir = os.path.dirname(path)
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+
+
 def load_json(path: str):
     """Loads the json file from 'path' into a list of dicts
 
@@ -107,9 +118,11 @@ def store_json(
     data: Union[dict, list, defaultdict, OrderedDict],
     file_path: str,
     sort_keys=False,
-    indent=None,
+    indent=2,
 ):
-    """ Function for storing a dict to a json file
+    """ Function for storing a dict to a json file. 
+        Will create the directories in the path if they don't
+        already exist.
 
     Args:
         data (dict): The dict or list to be stored in the json file
@@ -130,12 +143,15 @@ def store_json(
         raise ValueError("'data' needs to be a dict")
     if ".json" not in file_path:
         raise ValueError("'file_path' needs to include the name of the output file")
+    create_dirs_if_not_exist(file_path)
     with open(file_path, mode="w") as f:
         f.write(json.dumps(data, sort_keys=sort_keys, indent=indent))
 
 
 def store_jsonl(data: list, file_path: str):
-    """ Function for storing a list as a jsonl file
+    """ Function for storing a list as a jsonl file.
+        Will create the directories in the path if they don't
+        already exist.
 
     Args:
         data (list): A list of arbitrary type
@@ -149,6 +165,7 @@ def store_jsonl(data: list, file_path: str):
         raise ValueError("'data' needs to be a list")
     if ".jsonl" not in file_path:
         raise ValueError("'file_path' needs to include the name of the output file")
+    create_dirs_if_not_exist(file_path)
     with jsonlines.open(file_path, mode="w") as f:
         for d in data:
             f.write(d)
