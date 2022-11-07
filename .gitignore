@@ -1,2 +1,6 @@
 dist/
 utils_package_Martin36.egg-info/
+tests/data/
+.env
+__pycache__/
+.vscode/

@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     
 setup(
     name="utils-package-Martin36",
-    version="0.0.6",
+    version="0.0.7",
     author="Martin Funkquist",
     author_email="martin.funkquist@gmail.com",
     description="A package containing helpful util functions",
@@ -24,7 +24,6 @@ setup(
     packages=find_packages(where="src"),
     python_requires=">=3.6",
     install_requires = [
-        "jsonlines>=2.0.0",
-        "nltk>=3.6.2"
+        "jsonlines>=2.0.0"
     ]
 )

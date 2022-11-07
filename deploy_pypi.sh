@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # Updates the patch version of the package
-bump
+export VERSION=`bump`
 
-# TODO: Create git tag using the version from bump
+# Create git tag using the version from bump
+git tag v$VERSION
+git push origin v$VERSION
 
 # Remove the previous build
 rm dist/*

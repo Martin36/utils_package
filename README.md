@@ -2,7 +2,7 @@
 
 This repo contains some useful helper function for Python
 
-### Installation
+## Installation
 
 Install this package using
 
@@ -10,11 +10,11 @@ Install this package using
 pip install utils-package-Martin36
 ```
 
-To use this package you will need to download the nltk stopwords package. This is done by running:
-
+## Development
+If you want to help make this package better, feel free to put up a Pull Request. 
+### Run tests
+In order to run the test suite, run the following:
 ```
-nltk.download("stopwords")
+PYTHONPATH=src python tests/test_util_funcs.py
 ```
-
-
 
